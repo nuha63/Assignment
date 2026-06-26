@@ -103,6 +103,7 @@ class _HomeShellState extends State<HomeShell> {
             activeIcon: Icon(Icons.bar_chart),
             label: 'Summary',
           ),
+          
         ],
       ),
     );

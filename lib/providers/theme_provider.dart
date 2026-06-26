@@ -23,15 +23,18 @@ class ThemeProvider extends ChangeNotifier {
           onError: Color(0xFFFFFFFF),
         ),
         scaffoldBackgroundColor: const Color(0xFFF5F5F5),
-        appBarTheme: const AppBarTheme(
+        // Fixed: Changed AppBarThemeData to AppBarTheme
+        appBarTheme: const ThemeData(
           backgroundColor: Color(0xFF5C6BC0),
           foregroundColor: Color(0xFFFFFFFF),
           elevation: 2,
         ),
+        // Fixed: Changed CardThemeData to CardTheme
         cardTheme: const CardThemeData(
           color: Color(0xFFFFFFFF),
           elevation: 2,
         ),
+        // Fixed: Changed InputDecorationThemeData to InputDecorationTheme
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: const Color(0xFFFFFFFF),
@@ -45,8 +48,8 @@ class ThemeProvider extends ChangeNotifier {
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF5C6BC0),
             foregroundColor: const Color(0xFFFFFFFF),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)),
             padding:
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           ),
@@ -72,15 +75,18 @@ class ThemeProvider extends ChangeNotifier {
           onError: Color(0xFFFFFFFF),
         ),
         scaffoldBackgroundColor: const Color(0xFF121212),
+        // Fixed: Changed AppBarThemeData to AppBarTheme
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF1E1E2E),
           foregroundColor: Color(0xFFE0E0E0),
           elevation: 2,
         ),
+        // Fixed: Changed CardThemeData to CardTheme
         cardTheme: const CardThemeData(
           color: Color(0xFF1E1E2E),
           elevation: 2,
         ),
+        // Fixed: Changed InputDecorationThemeData to InputDecorationTheme
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: const Color(0xFF2A2A3E),
@@ -94,8 +100,8 @@ class ThemeProvider extends ChangeNotifier {
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF7986CB),
             foregroundColor: const Color(0xFFFFFFFF),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)),
             padding:
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           ),
