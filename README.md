@@ -1,6 +1,6 @@
 # 📚 Grade Tracker
 
-A Flutter app where students can add subjects with marks, view their grades, and see a result summary — built for a university Flutter assignment.
+A Flutter app where students can add subjects with marks, view their grades, and see a result summary — built for an assignment.
 
 ## Features
 
