@@ -23,8 +23,7 @@ class ThemeProvider extends ChangeNotifier {
           onError: Color(0xFFFFFFFF),
         ),
         scaffoldBackgroundColor: const Color(0xFFF5F5F5),
-        // Fixed: Changed AppBarThemeData to AppBarTheme
-        appBarTheme: const ThemeData(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF5C6BC0),
           foregroundColor: Color(0xFFFFFFFF),
           elevation: 2,

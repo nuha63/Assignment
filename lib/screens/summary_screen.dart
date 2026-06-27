@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/subject_provider.dart';
+import '../utils/grade_helpers.dart';
 
 class SummaryScreen extends StatelessWidget {
   const SummaryScreen({super.key});
-
-  Color _gradeColor(String grade, ColorScheme cs) {
-    switch (grade) {
-      case 'A':
-        return cs.primary;
-      case 'B':
-        return cs.secondary;
-      case 'C':
-        return cs.tertiary ?? cs.secondary;
-      default:
-        return cs.error;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +16,7 @@ class SummaryScreen extends StatelessWidget {
         final avg = provider.averageMark;
         final overall = provider.overallGrade;
         final passing = provider.passingSubjects;
-        final gradeColor = _gradeColor(overall, colorScheme);
+        final gColor = gradeColor(overall, colorScheme);
 
         return SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -49,7 +37,7 @@ class SummaryScreen extends StatelessWidget {
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: gradeColor.withOpacity(0.4), width: 2),
+                  side: BorderSide(color: gColor.withOpacity(0.4), width: 2),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(24),
@@ -66,15 +54,15 @@ class SummaryScreen extends StatelessWidget {
                         width: 80,
                         height: 80,
                         decoration: BoxDecoration(
-                          color: gradeColor.withOpacity(0.15),
+                          color: gColor.withOpacity(0.15),
                           shape: BoxShape.circle,
-                          border: Border.all(color: gradeColor, width: 3),
+                          border: Border.all(color: gColor, width: 3),
                         ),
                         child: Center(
                           child: Text(
                             total == 0 ? '—' : overall,
                             style: TextStyle(
-                              color: gradeColor,
+                              color: gColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 36,
                             ),
@@ -151,11 +139,11 @@ class SummaryScreen extends StatelessWidget {
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundColor:
-                              _gradeColor(s.grade, colorScheme).withOpacity(0.15),
+                              gradeColor(s.grade, colorScheme).withOpacity(0.15),
                           child: Text(
                             s.grade,
                             style: TextStyle(
-                              color: _gradeColor(s.grade, colorScheme),
+                              color: gradeColor(s.grade, colorScheme),
                               fontWeight: FontWeight.bold,
                             ),
                           ),

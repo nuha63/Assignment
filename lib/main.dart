@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'providers/navigation_provider.dart';
 import 'providers/subject_provider.dart';
 import 'providers/theme_provider.dart';
 import 'screens/add_subject_screen.dart';
@@ -12,6 +13,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => SubjectProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => NavigationProvider()),
       ],
       child: const GradeTrackerApp(),
     ),
@@ -39,36 +41,26 @@ class GradeTrackerApp extends StatelessWidget {
   }
 }
 
-class HomeShell extends StatefulWidget {
+class HomeShell extends StatelessWidget {
   const HomeShell({super.key});
 
-  @override
-  State<HomeShell> createState() => _HomeShellState();
-}
-
-class _HomeShellState extends State<HomeShell> {
-  int _currentIndex = 0;
-
-  final List<Widget> _screens = const [
+  static const List<Widget> _screens = [
     SingleChildScrollView(child: AddSubjectScreen()),
     SubjectListScreen(),
     SummaryScreen(),
   ];
 
-  final List<String> _titles = ['Add Subject', 'Subjects', 'Summary'];
-
-  void _onTabTapped(int index) {
-    setState(() => _currentIndex = index);
-  }
+  static const List<String> _titles = ['Add Subject', 'Subjects', 'Summary'];
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final themeProvider = context.watch<ThemeProvider>();
+    final navProvider = context.watch<NavigationProvider>();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_titles[_currentIndex]),
+        title: Text(_titles[navProvider.currentIndex]),
         actions: [
           IconButton(
             icon: Icon(
@@ -81,12 +73,12 @@ class _HomeShellState extends State<HomeShell> {
         ],
       ),
       body: IndexedStack(
-        index: _currentIndex,
+        index: navProvider.currentIndex,
         children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
+        currentIndex: navProvider.currentIndex,
+        onTap: (index) => context.read<NavigationProvider>().setIndex(index),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle_outline),
@@ -103,7 +95,6 @@ class _HomeShellState extends State<HomeShell> {
             activeIcon: Icon(Icons.bar_chart),
             label: 'Summary',
           ),
-          
         ],
       ),
     );

@@ -109,7 +109,7 @@ class _AddSubjectScreenState extends State<AddSubjectScreen> {
               label: const Text('Add Subject'),
             ),
             const SizedBox(height: 24),
-            _GradeReferenceCard(),
+            const _GradeReferenceCard(),
           ],
         ),
       ),
@@ -118,13 +118,15 @@ class _AddSubjectScreenState extends State<AddSubjectScreen> {
 }
 
 class _GradeReferenceCard extends StatelessWidget {
+  const _GradeReferenceCard();
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final grades = [
       ('A', '≥ 80', colorScheme.primary),
       ('B', '≥ 65', colorScheme.secondary),
-      ('C', '≥ 50', colorScheme.tertiary ?? colorScheme.secondary),
+      ('C', '≥ 50', colorScheme.tertiary),
       ('F', '< 50', colorScheme.error),
     ];
 

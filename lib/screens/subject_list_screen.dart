@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/subject_provider.dart';
+import '../utils/grade_helpers.dart';
 
 class SubjectListScreen extends StatelessWidget {
   const SubjectListScreen({super.key});
-
-  Color _gradeColor(String grade, ColorScheme cs) {
-    switch (grade) {
-      case 'A':
-        return cs.primary;
-      case 'B':
-        return cs.secondary;
-      case 'C':
-        return cs.tertiary ?? cs.secondary;
-      default:
-        return cs.error;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +72,7 @@ class SubjectListScreen extends StatelessWidget {
                 itemCount: subjects.length,
                 itemBuilder: (context, index) {
                   final subject = subjects[index];
-                  final gradeColor = _gradeColor(subject.grade, colorScheme);
+                  final gColor = gradeColor(subject.grade, colorScheme);
 
                   return Dismissible(
                     key: ValueKey('${subject.name}_$index'),
@@ -115,7 +103,7 @@ class SubjectListScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                         side: BorderSide(
-                          color: gradeColor.withOpacity(0.3),
+                          color: gColor.withOpacity(0.3),
                           width: 1,
                         ),
                       ),
@@ -126,14 +114,14 @@ class SubjectListScreen extends StatelessWidget {
                           width: 48,
                           height: 48,
                           decoration: BoxDecoration(
-                            color: gradeColor.withOpacity(0.15),
+                            color: gColor.withOpacity(0.15),
                             shape: BoxShape.circle,
                           ),
                           child: Center(
                             child: Text(
                               subject.grade,
                               style: TextStyle(
-                                color: gradeColor,
+                                color: gColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
